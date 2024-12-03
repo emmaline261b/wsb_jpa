@@ -2,14 +2,8 @@ package com.jpacourse.persistence.entity;
 
 import com.jpacourse.persistence.enums.Specialization;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "DOCTOR")
@@ -17,25 +11,38 @@ public class DoctorEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "DOCTOR_ID")
 	private Long id;
 
-	@Column(nullable = false)
+	@Column(name="FIRST_NAME",nullable = false)
 	private String firstName;
 
-	@Column(nullable = false)
+	@Column(name="LAST_NAME",nullable = false)
 	private String lastName;
 
-	@Column(nullable = false)
+	@Column(name="TELEPHONE_NUMBER",nullable = false, length=12)
 	private String telephoneNumber;
 
+	@Column(name="EMAIL",nullable = false, unique=true)
 	private String email;
 
-	@Column(nullable = false)
+	@Column(name="DOCTOR_NUMBER",nullable = false,unique=true)
 	private String doctorNumber;
 
-	@Column(nullable = false)
+	@Column(name="SPECIALIZATION",nullable = false)
 	@Enumerated(EnumType.STRING)
 	private Specialization specialization;
+
+	// Relacja z encją AddressEntity
+	@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	@JoinColumn(name = "ADDRESS_ID", nullable = false)
+	private AddressEntity address;
+
+	// Relacja z encją Visit, mapowana przez encję Doctor
+	@OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<VisitEntity> visits;
+
+
 
 	public Long getId() {
 		return id;
