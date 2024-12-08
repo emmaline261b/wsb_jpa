@@ -11,16 +11,16 @@ public class AddressEntity {
 	@Column(name = "ADDRESS_ID")
 	private Long id;
 
-	@Column(nullable = false)
+	@Column(name="CITY", nullable = false)
 	private String city;
 
-	@Column(name="ADDRESS_LINE1",nullable = false)
+	@Column(name="ADDRESS_LINE1", nullable = false)
 	private String addressLine1;
 
 	@Column(name="ADDRESS_LINE2")
 	private String addressLine2;
 
-	@Column(name="POSTAL_CODE",length=6,nullable = false)
+	@Column(name="POSTAL_CODE", length=6, nullable = false)
 	private String postalCode;
 
 	public Long getId() {

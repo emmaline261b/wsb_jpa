@@ -20,12 +20,12 @@ public class VisitEntity {
 	private LocalDateTime time;
 
 	// Relacja z DoctorEntity
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "DOCTOR_ID", nullable = false)
 	private DoctorEntity doctor;
 
 	// Relacja z PatientEntity
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "PATIENT_ID", nullable = false)
 	private PatientEntity patient;
 

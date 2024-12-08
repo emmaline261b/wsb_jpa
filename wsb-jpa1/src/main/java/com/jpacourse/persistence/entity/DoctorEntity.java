@@ -20,29 +20,27 @@ public class DoctorEntity {
 	@Column(name="LAST_NAME",nullable = false)
 	private String lastName;
 
-	@Column(name="TELEPHONE_NUMBER",nullable = false, length=12)
+	@Column(name="TELEPHONE_NUMBER", length=12, nullable = false)
 	private String telephoneNumber;
 
-	@Column(name="EMAIL",nullable = false, unique=true)
+	@Column(name="EMAIL", unique=true)
 	private String email;
 
-	@Column(name="DOCTOR_NUMBER",nullable = false,unique=true)
+	@Column(name="DOCTOR_NUMBER",nullable = false, unique=true)
 	private String doctorNumber;
 
-	@Column(name="SPECIALIZATION",nullable = false)
+	@Column(name="SPECIALIZATION", nullable = false)
 	@Enumerated(EnumType.STRING)
 	private Specialization specialization;
 
-	// Relacja z encją AddressEntity
-	@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	// Relacja z encją AddressEntity, dodana jako klucz obcy w tabeli doctor
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "ADDRESS_ID", nullable = false)
 	private AddressEntity address;
 
-	// Relacja z encją Visit, mapowana przez encję Doctor
+	// Relacja z encją Visit, mapowana przez zmienną doctor w klasie VisitEntity
 	@OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<VisitEntity> visits;
-
-
 
 	public Long getId() {
 		return id;
