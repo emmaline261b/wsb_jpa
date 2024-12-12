@@ -1,8 +1,10 @@
 package com.jpacourse.rest;
 
 import com.jpacourse.dto.AddressTO;
+import com.jpacourse.dto.PatientTO;
 import com.jpacourse.rest.exception.EntityNotFoundException;
 import com.jpacourse.service.AddressService;
+import com.jpacourse.service.PatientService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PatientController
 {
 
-    private final  PatientService  patientService;
+    private final PatientService patientService;
 
 
     public  PatientController( PatientService  patientService) {
@@ -23,7 +25,7 @@ public class PatientController
         final  PatientTO  patient =  patientService.findById(id);
         if( patient != null)
         {
-            return  Patient;
+            return patient;
         }
         throw new EntityNotFoundException(id);
     }

@@ -1,7 +1,9 @@
 package com.jpacourse.mapper;
 
 import com.jpacourse.dto.AddressTO;
+import com.jpacourse.dto.PatientTO;
 import com.jpacourse.persistence.entity.AddressEntity;
+import com.jpacourse.persistence.entity.PatientEntity;
 
 public final class PatientMapper
 {
@@ -13,15 +15,15 @@ public final class PatientMapper
             return null;
         }
         final PatientTO patientTO = new PatientTO();
-        patientTO.setId(entity.getId);
-        patientTO.setFirstName(entity.getFirstName);
-        patientTO.setLastName(entity.getLastName);
-        patientTO.setTelephoneNumber(entity.getTelephoneNumber);
-        patientTO.setEmail(entity.getEmail);
-        patientTO.setPatientNumber(entity.getPatientNumber);
-        patientTO.setDateOfBirth(entity.getDateOfBirth);
-        patientTO.setAddress(entity.getAddress);
-        patientTO.setVisits(entity.getVisits);
+        patientTO.setId(entity.getId());
+        patientTO.setFirstName(entity.getFirstName());
+        patientTO.setLastName(entity.getLastName());
+        patientTO.setTelephoneNumber(entity.getTelephoneNumber());
+        patientTO.setEmail(entity.getEmail());
+        patientTO.setPatientNumber(entity.getPatientNumber());
+        patientTO.setDateOfBirth(entity.getDateOfBirth());
+        patientTO.setAddress(entity.getAddress());
+        patientTO.setVisits(entity.getVisits());
 
 
 
