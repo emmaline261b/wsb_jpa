@@ -31,18 +31,22 @@ public final class PatientMapper
     }
 
 
-//    public static AddressEntity mapToEntity(final AddressTO addressTO)
-//    {
-//        if(addressTO == null)
-//        {
-//            return null;
-//        }
-//        AddressEntity addressEntity = new AddressEntity();
-//        addressEntity.setId(addressTO.getId());
-//        addressEntity.setAddressLine1(addressTO.getAddressLine1());
-//        addressEntity.setAddressLine2(addressTO.getAddressLine2());
-//        addressEntity.setCity(addressTO.getCity());
-//        addressEntity.setPostalCode(addressTO.getPostalCode());
-//        return addressEntity;
-//    }
+    public static PatientEntity mapToEntity(final PatientTO patientTO)
+    {
+        if(patientTO == null)
+        {
+            return null;
+        }
+        PatientEntity patientEntity = new PatientEntity();
+        patientEntity.setId(patientTO.getId());
+        patientEntity.setFirstName(patientTO.getFirstName());
+        patientEntity.setLastName(patientTO.getLastName());
+        patientEntity.setTelephoneNumber(patientTO.getTelephoneNumber());
+        patientEntity.setEmail(patientTO.getEmail());
+        patientEntity.setPatientNumber(patientTO.getPatientNumber());
+        patientEntity.setDateOfBirth(patientTO.getDateOfBirth());
+        patientEntity.setAddress(patientTO.getAddress());
+        patientEntity.setVisits(patientTO.getVisits());
+        return patientEntity;
+    }
 }
