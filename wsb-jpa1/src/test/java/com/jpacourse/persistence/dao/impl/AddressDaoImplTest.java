@@ -1,4 +1,4 @@
-package com.jpacourse.persistance.dao;
+package com.jpacourse.persistence.dao.impl;
 
 import com.jpacourse.persistence.dao.AddressDao;
 import com.jpacourse.persistence.entity.AddressEntity;
@@ -11,10 +11,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @Transactional
-public class AddressDaoTest
-{
+public class AddressDaoImplTest {
+
     @Autowired
-    private AddressDao addressDao;
+    AddressDao addressDao;
 
     @Test
     public void testShouldFindAddressById() {

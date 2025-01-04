@@ -1,4 +1,5 @@
-package com.jpacourse.persistance.dao;
+package com.jpacourse.persistence.dao.impl;
+
 
 import com.jpacourse.persistence.dao.PatientDao;
 import com.jpacourse.persistence.dao.DoctorDao;
@@ -13,14 +14,12 @@ import org.springframework.transaction.annotation.Transactional;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-
 @SpringBootTest
 @Transactional
-public class PatientDaoTest {
+public class PatientDaoImplTest {
 
     @Autowired
     private PatientDao patientDao;

@@ -3,6 +3,7 @@ package com.jpacourse.persistence.entity;
 import com.jpacourse.persistence.enums.Pronoun;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 
@@ -45,8 +46,6 @@ public class PatientEntity {
 	// Relacja z encją VisitEntity, mapowana przez Patient
 	@OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<VisitEntity> visits;
-
-
 
 
 	public Long getId() {
@@ -122,7 +121,7 @@ public class PatientEntity {
 	}
 
 	public List<VisitEntity> getVisits() {
-		return visits;
+		return (visits != null) ? visits : new ArrayList<>();
 	}
 
 	public void setVisits(List<VisitEntity> visits) {

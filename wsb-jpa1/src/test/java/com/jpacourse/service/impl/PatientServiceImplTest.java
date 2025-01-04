@@ -5,6 +5,7 @@ import com.jpacourse.dto.PatientTO;
 import com.jpacourse.persistence.dao.PatientDao;
 import com.jpacourse.persistence.entity.PatientEntity;
 
+import com.jpacourse.persistence.enums.Pronoun;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -16,7 +17,6 @@ import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PatientServiceImplTest {
-
 
 
     @Mock
@@ -33,6 +33,7 @@ public class PatientServiceImplTest {
         patientEntity.setId(patientId);
         patientEntity.setFirstName("John");
         patientEntity.setLastName("Doe");
+        patientEntity.setPronoun(Pronoun.HE);
         when(patientDao.findOne(patientId)).thenReturn(patientEntity);
 
         // when
