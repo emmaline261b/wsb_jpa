@@ -1,18 +1,19 @@
 package com.jpacourse.mapper;
 
 import com.jpacourse.dto.PatientTO;
+import com.jpacourse.dto.VisitTO;
 import com.jpacourse.persistence.entity.PatientEntity;
 
-public final class PatientMapper
-{
+import java.util.stream.Collectors;
 
-    public static PatientTO mapToTO(final PatientEntity entity)
-    {
-        if (entity == null)
-        {
+public class PatientMapper {
+
+    public static PatientTO mapToTO(final PatientEntity entity) {
+        if (entity == null) {
             return null;
         }
-        final PatientTO patientTO = new PatientTO();
+
+        PatientTO patientTO = new PatientTO();
         patientTO.setId(entity.getId());
         patientTO.setFirstName(entity.getFirstName());
         patientTO.setLastName(entity.getLastName());
@@ -22,31 +23,17 @@ public final class PatientMapper
         patientTO.setPatientNumber(entity.getPatientNumber());
         patientTO.setDateOfBirth(entity.getDateOfBirth());
         patientTO.setAddress(entity.getAddress());
-        patientTO.setVisits(entity.getVisits());
 
-
+        // Mapowanie wizyt
+        patientTO.setVisits(
+                entity.getVisits().stream()
+                        .filter(visit -> visit.getTime().isBefore(java.time.LocalDateTime.now()))
+                        .map(VisitMapper::mapToTO)
+                        .collect(Collectors.toList())
+        );
 
         return patientTO;
     }
 
 
-    public static PatientEntity mapToEntity(final PatientTO patientTO)
-    {
-        if(patientTO == null)
-        {
-            return null;
-        }
-        PatientEntity patientEntity = new PatientEntity();
-        patientEntity.setId(patientTO.getId());
-        patientEntity.setFirstName(patientTO.getFirstName());
-        patientEntity.setLastName(patientTO.getLastName());
-        patientEntity.setPronoun(patientTO.getPronoun());
-        patientEntity.setTelephoneNumber(patientTO.getTelephoneNumber());
-        patientEntity.setEmail(patientTO.getEmail());
-        patientEntity.setPatientNumber(patientTO.getPatientNumber());
-        patientEntity.setDateOfBirth(patientTO.getDateOfBirth());
-        patientEntity.setAddress(patientTO.getAddress());
-        patientEntity.setVisits(patientTO.getVisits());
-        return patientEntity;
-    }
 }
