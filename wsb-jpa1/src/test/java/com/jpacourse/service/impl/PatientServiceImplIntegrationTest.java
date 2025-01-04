@@ -1,12 +1,13 @@
 package com.jpacourse.service.impl;
 
+import com.jpacourse.dto.PatientTO;
 import com.jpacourse.persistence.dao.DoctorDao;
 import com.jpacourse.persistence.dao.PatientDao;
 import com.jpacourse.persistence.dao.VisitDao;
 import com.jpacourse.persistence.entity.DoctorEntity;
 import com.jpacourse.persistence.entity.PatientEntity;
 import com.jpacourse.persistence.entity.VisitEntity;
-import com.jpacourse.service.PatientService;
+import com.jpacourse.persistence.enums.Pronoun;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +22,7 @@ import java.util.List;
 public class PatientServiceImplIntegrationTest {
 
     @Autowired
-    private PatientService patientService;
+    private PatientServiceImpl patientService;
 
     @Autowired
     private PatientDao patientDao;
@@ -50,5 +51,31 @@ public class PatientServiceImplIntegrationTest {
 
         assertThat(visitsAfterDeletion).doesNotContainAnyElementsOf(patient.getVisits());
         assertThat(doctorsAfterDeletion).containsExactlyElementsOf(doctorsBeforeDeletion);
+    }
+
+    @Test
+    public void shouldReturnCorrectPatientTOById() {
+        // Given
+        Long patientId = 1L;
+
+        // When
+        PatientTO patientTO = patientService.findById(patientId);
+
+        // Then
+        assertThat(patientTO).isNotNull();
+        assertThat(patientTO.getId()).isEqualTo(patientId);
+        assertThat(patientTO.getFirstName()).isEqualTo("Maria");
+        assertThat(patientTO.getLastName()).isEqualTo("Wiśniewska");
+        assertThat(patientTO.getPronoun()).isEqualTo(Pronoun.SHE);
+
+
+        // Sprawdzanie wizyt
+        assertThat(patientTO.getVisits()).isNotEmpty();
+        patientTO.getVisits().forEach(visit -> {
+            assertThat(visit.getTime()).isNotNull();
+            assertThat(visit.getDoctorFirstName()).isNotEmpty();
+            assertThat(visit.getDoctorLastName()).isNotEmpty();
+            assertThat(visit.getTreatmentTypes()).isNotEmpty();
+        });
     }
 }
