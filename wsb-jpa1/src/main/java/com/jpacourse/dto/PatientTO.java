@@ -2,6 +2,7 @@ package com.jpacourse.dto;
 
 import com.jpacourse.persistence.entity.AddressEntity;
 import com.jpacourse.persistence.entity.VisitEntity;
+import com.jpacourse.persistence.enums.Pronoun;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -13,6 +14,8 @@ public class PatientTO implements Serializable {
     private String firstName;
 
     private String lastName;
+
+    private Pronoun pronoun;
 
     private String telephoneNumber;
 
@@ -49,6 +52,14 @@ public class PatientTO implements Serializable {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public Pronoun getPronoun() {
+        return pronoun;
+    }
+
+    public void setPronoun(Pronoun pronoun) {
+        this.pronoun = pronoun;
     }
 
     public String getTelephoneNumber() {

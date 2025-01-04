@@ -1,5 +1,7 @@
 package com.jpacourse.persistence.entity;
 
+import com.jpacourse.persistence.enums.Pronoun;
+
 import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.*;
@@ -18,6 +20,9 @@ public class PatientEntity {
 
 	@Column(name="LAST_NAME",nullable = false)
 	private String lastName;
+
+	@Column(name="PRONOUN", nullable = false)
+	private Pronoun pronoun;
 
 	@Column(name="TELEPHONE_NUMBER",nullable = false)
 	private String telephoneNumber;
@@ -65,6 +70,14 @@ public class PatientEntity {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public Pronoun getPronoun() {
+		return pronoun;
+	}
+
+	public void setPronoun(Pronoun pronoun) {
+		this.pronoun = pronoun;
 	}
 
 	public String getTelephoneNumber() {
