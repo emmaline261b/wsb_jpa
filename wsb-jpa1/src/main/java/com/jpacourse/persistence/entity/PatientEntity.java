@@ -21,6 +21,7 @@ public class PatientEntity {
 	@Column(name="LAST_NAME",nullable = false)
 	private String lastName;
 
+	@Enumerated(EnumType.STRING)
 	@Column(name="PRONOUN", nullable = false)
 	private Pronoun pronoun;
 
