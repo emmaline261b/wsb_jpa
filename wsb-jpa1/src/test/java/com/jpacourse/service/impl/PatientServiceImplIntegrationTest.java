@@ -39,7 +39,6 @@ public class PatientServiceImplIntegrationTest {
         // Given
         Long patientId = 1L;
         PatientEntity patient = patientDao.findOne(patientId);
-//        List<VisitEntity> visitsBeforeDeletion = visitDao.findAll();
         List<DoctorEntity> doctorsBeforeDeletion = doctorDao.findAll();
 
         // When

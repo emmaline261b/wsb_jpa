@@ -6,18 +6,20 @@ import com.jpacourse.persistence.entity.PatientEntity;
 import com.jpacourse.persistence.entity.DoctorEntity;
 import com.jpacourse.persistence.entity.VisitEntity;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(SpringRunner.class)
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
+
 @SpringBootTest
+@Transactional
 public class PatientDaoTest {
 
     @Autowired
@@ -26,13 +28,12 @@ public class PatientDaoTest {
     @Autowired
     private DoctorDao doctorDao;
 
-    @Transactional
     @Test
     public void shouldAddVisitForPatient() {
         // Given
         Long patientId = 1L;
         Long doctorId = 1L;
-        LocalDateTime visitDate = LocalDateTime.now().plusDays(1);
+        LocalDateTime visitDate = LocalDateTime.of(2025, 1, 5, 9, 20);
         String visitDescription = "Wizyta kontrolna";
 
         // When
@@ -43,9 +44,12 @@ public class PatientDaoTest {
         assertThat(patient).isNotNull();
         assertThat(patient.getVisits()).isNotEmpty();
 
-        VisitEntity visit = patient.getVisits().get(0);
+        VisitEntity visit = patient.getVisits()
+                .stream()
+                .filter(x -> Objects.equals(x.getTime(), visitDate))
+                .collect(Collectors.toList()).get(0);
 
-        assertThat(visit.getTime()).isEqualTo(visitDate);
+        assertThat(visit.getTime().withNano(0)).isEqualTo(visitDate.withNano(0));
         assertThat(visit.getDescription()).isEqualTo(visitDescription);
         assertThat(visit.getDoctor().getId()).isEqualTo(doctorId);
         assertThat(visit.getPatient().getId()).isEqualTo(patientId);
