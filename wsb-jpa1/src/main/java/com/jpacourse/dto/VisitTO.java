@@ -5,10 +5,19 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class VisitTO implements Serializable {
+    private String description;
     private LocalDateTime time;
     private String doctorFirstName;
     private String doctorLastName;
     private List<String> treatmentTypes;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public LocalDateTime getTime() {
         return time;

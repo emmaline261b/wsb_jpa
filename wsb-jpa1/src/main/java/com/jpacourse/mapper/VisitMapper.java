@@ -13,6 +13,7 @@ public class VisitMapper {
         }
 
         VisitTO visitTO = new VisitTO();
+        visitTO.setDescription(visitEntity.getDescription());
         visitTO.setTime(visitEntity.getTime());
         visitTO.setDoctorFirstName(visitEntity.getDoctor().getFirstName());
         visitTO.setDoctorLastName(visitEntity.getDoctor().getLastName());

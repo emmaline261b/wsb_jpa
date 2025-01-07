@@ -1,6 +1,7 @@
 package com.jpacourse.service.impl;
 
 import com.jpacourse.dto.PatientTO;
+import com.jpacourse.dto.VisitTO;
 import com.jpacourse.persistence.dao.DoctorDao;
 import com.jpacourse.persistence.dao.PatientDao;
 import com.jpacourse.persistence.dao.VisitDao;
@@ -14,6 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
+
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -76,5 +79,23 @@ public class PatientServiceImplIntegrationTest {
             assertThat(visit.getDoctorLastName()).isNotEmpty();
             assertThat(visit.getTreatmentTypes()).isNotEmpty();
         });
+    }
+
+    @Test
+    public void shouldReturnPatientVisits() {
+        // Given
+        Long patientId = 1L;
+
+        // When
+        List<VisitTO> visits = patientService.findVisits(patientId);
+
+        // Then
+        assertThat(visits).hasSize(1);
+        VisitTO wisniewskaVisit = visits.get(0);
+        assertThat(wisniewskaVisit.getDescription()).isEqualTo("Konsultacja chirurgiczna");
+        assertThat(wisniewskaVisit.getTime()).isEqualTo(LocalDateTime.parse("2024-12-05T09:00:00"));
+        assertThat(wisniewskaVisit.getDoctorFirstName()).isEqualTo("Jan");
+        assertThat(wisniewskaVisit.getDoctorLastName()).isEqualTo("Kowalski");
+        assertThat(wisniewskaVisit.getTreatmentTypes()).containsExactlyInAnyOrder("USG");
     }
 }

@@ -11,10 +11,10 @@ values
     ('Anna', 'Nowak', '600200300', 'anna.nowak@szpital.pl', 'L002', 'DERMATOLOGIST', 2);
 
 -- Wstawianie danych do tabeli Patient
-insert into patient (first_name, last_name, pronoun, telephone_number, email, patient_number, date_of_birth, address_id)
+insert into patient (first_name, last_name, pronoun, telephone_number, email, patient_number, date_of_birth, address_id, version)
 values
-    ('Maria', 'Wiśniewska', 'SHE', '700300400', 'maria.wisniewska@gmail.com', 'P001', '1992-04-15', 1),
-    ('Tomasz', 'Zieliński', 'HE', '800400500', 'tomasz.zielinski@gmail.com', 'P002', '1980-09-12', 2);
+    ('Maria', 'Wiśniewska', 'SHE', '700300400', 'maria.wisniewska@gmail.com', 'P001', '1992-04-15', 1, 0),
+    ('Tomasz', 'Zieliński', 'HE', '800400500', 'tomasz.zielinski@gmail.com', 'P002', '1980-09-12', 2, 0);
 
 -- Wstawianie danych do tabeli Visit
 insert into visit (description, time, doctor_id, patient_id)
