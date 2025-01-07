@@ -48,7 +48,7 @@ public class PatientEntity {
 	private List<VisitEntity> visits;
 
 	@Version
-	private int version;
+	private Integer version;
 
 	public Long getId() {
 		return id;
@@ -128,5 +128,13 @@ public class PatientEntity {
 
 	public void setVisits(List<VisitEntity> visits) {
 		this.visits = visits;
+	}
+
+	public Integer getVersion() {
+		return version;
+	}
+
+	public void setVersion(Integer version) {
+		this.version = version;
 	}
 }
