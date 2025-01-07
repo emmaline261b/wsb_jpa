@@ -11,6 +11,7 @@ import com.jpacourse.persistence.dao.PatientDao;
 import com.jpacourse.persistence.entity.AddressEntity;
 import com.jpacourse.persistence.entity.PatientEntity;
 import com.jpacourse.persistence.entity.VisitEntity;
+import com.jpacourse.rest.exception.EntityNotFoundException;
 import com.jpacourse.service.AddressService;
 import com.jpacourse.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +44,21 @@ public class PatientServiceImpl implements PatientService
     public List<VisitTO> findVisits(Long patientId) {
         PatientEntity patient = patientDao.findOne(patientId);
         return patient.getVisits().stream().map(VisitMapper::mapToTO).collect(Collectors.toList());
+    }
+
+    @Override
+    public PatientEntity updateEmail(Long patientId, String email) {
+        if (email == null || email == "") {
+            throw new IllegalArgumentException("invalid data.");
+        }
+
+        PatientEntity entity = patientDao.getOne(patientId);
+        if (entity == null) {
+            throw new EntityNotFoundException(patientId);
+        }
+
+        entity.setEmail(email);
+        patientDao.update(entity);
+        return entity;
     }
 }

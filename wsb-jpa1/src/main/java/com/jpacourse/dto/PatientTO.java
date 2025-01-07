@@ -28,6 +28,7 @@ public class PatientTO implements Serializable {
     private AddressEntity address;
 
     private List<VisitTO> visits;
+    private Integer version;
 
 
     public Long getId() {
@@ -108,5 +109,13 @@ public class PatientTO implements Serializable {
 
     public void setVisits(List<VisitTO> visits) {
         this.visits = visits;
+    }
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
     }
 }

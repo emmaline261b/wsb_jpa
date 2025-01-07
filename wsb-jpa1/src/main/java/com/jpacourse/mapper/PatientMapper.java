@@ -1,11 +1,12 @@
 package com.jpacourse.mapper;
 
 import com.jpacourse.dto.PatientTO;
-import com.jpacourse.dto.VisitTO;
 import com.jpacourse.persistence.entity.PatientEntity;
+import org.springframework.stereotype.Component;
 
 import java.util.stream.Collectors;
 
+@Component
 public class PatientMapper {
 
     public static PatientTO mapToTO(final PatientEntity entity) {
@@ -23,6 +24,8 @@ public class PatientMapper {
         patientTO.setPatientNumber(entity.getPatientNumber());
         patientTO.setDateOfBirth(entity.getDateOfBirth());
         patientTO.setAddress(entity.getAddress());
+        patientTO.setVersion(entity.getVersion());
+
 
         // Mapowanie wizyt
         patientTO.setVisits(
