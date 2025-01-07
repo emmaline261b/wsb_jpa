@@ -47,6 +47,8 @@ public class PatientEntity {
 	@OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<VisitEntity> visits;
 
+	@Version
+	private int version;
 
 	public Long getId() {
 		return id;
