@@ -29,18 +29,8 @@ public abstract class AbstractDao<T, K extends Serializable> implements Dao<T, K
 	}
 
 	@Override
-	public T merge(T entity) {
-		return entityManager.merge(entity);
-	}
-
-	@Override
 	public T getOne(K id) {
 		return entityManager.getReference(getDomainClass(), id);
-	}
-
-	@Override
-	public T getOneEager(K id) {
-		return entityManager.find(getDomainClass(), id);
 	}
 
 	@Override
